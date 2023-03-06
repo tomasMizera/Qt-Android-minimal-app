@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import my_lib
+
 Window {
   id: root
 
@@ -8,6 +10,10 @@ Window {
   height: 480
   visible: true
   title: qsTr("Minimal Android example app")
+
+  AndroidInterface {
+    id: androidInterface
+  }
 
   Item {
     width: root.width
@@ -18,7 +24,7 @@ Window {
       anchors.centerIn: parent
 
       onClicked: {
-        console.log("RUUN!")
+        androidInterface.callJavaService()
       }
     }
   }

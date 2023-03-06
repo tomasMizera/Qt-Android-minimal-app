@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
 qt_add_executable(appdummy-qt-android-app
+    androidinterface.cpp
+    androidinterface.h
     main.cpp
 )
 
@@ -26,10 +28,7 @@ set_target_properties(appdummy-qt-android-app PROPERTIES
 )
 
 if (ANDROID)
-  message(STATUS "this is android build")
-  message (${CMAKE_CURRENT_SOURCE_DIR})
   if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml)
-    message(STATUS "manifest exists!")
     set_target_properties(
       appdummy-qt-android-app
       PROPERTIES QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
