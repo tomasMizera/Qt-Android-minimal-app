@@ -4,6 +4,9 @@
     android:installLocation="auto"
     android:versionCode="-- %%INSERT_VERSION_CODE%% --"
     android:versionName="-- %%INSERT_VERSION_NAME%% --">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- %%INSERT_PERMISSIONS -->
     <!-- %%INSERT_FEATURES -->
     <supports-screens
@@ -44,9 +47,15 @@
                 android:value="minimal" />
         </activity>
 
-        <service android:name=".DemoService">
+        <activity android:name=".PermissionsActivity" />
+
+        <service android:name=".DemoService" android:stopWithTask="true">
 
         </service>
 
+                <service android:name=".LocationService" android:foregroundServiceType="location" android:stopWithTask="true">
+            <!-- QT-related flag to understand that the service should run in the bgnd -->
+<!--            <meta-data android:name="android.app.background_running" android:value="true"/>-->
+        </service>
     </application>
 </manifest>

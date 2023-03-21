@@ -9,7 +9,9 @@ find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
 qt_add_executable(appdummy-qt-android-app
     androidinterface.cpp
+    jnimessenger.cpp
     androidinterface.h
+    jnimessenger.h
     main.cpp
 )
 

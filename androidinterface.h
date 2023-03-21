@@ -13,6 +13,10 @@ class AndroidInterface : public QObject
 
     Q_INVOKABLE void callJavaService() const;
 
+    Q_INVOKABLE void callTrackingService() const;
+
+    Q_INVOKABLE void callPermissionsActivity() const;
+
   signals:
 
 };

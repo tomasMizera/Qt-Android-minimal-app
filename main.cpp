@@ -6,7 +6,10 @@
 #else
 #endif
 
+#include <QQmlContext>
+
 #include "androidinterface.h"
+#include "jnimessenger.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +18,11 @@ int main(int argc, char *argv[])
   QQmlApplicationEngine engine;
 
   const QUrl url(u"qrc:/dummy-qt-android-app/main.qml"_qs);
+
+  JniMessenger *jniMessenger = new JniMessenger(&app);
+  Q_UNUSED( jniMessenger ); // is used for communication from Java!
+
+  engine.rootContext()->setContextProperty(QLatin1String("JniMessenger"), jniMessenger);
 
   QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                    &app, [url](QObject *obj, const QUrl &objUrl) {

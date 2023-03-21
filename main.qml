@@ -19,13 +19,32 @@ Window {
     width: root.width
     height: root.height
 
-    Button {
-      text: "Run native service"
+    Row {
       anchors.centerIn: parent
 
-      onClicked: {
-        androidInterface.callJavaService()
+      Button {
+        text: "Check permissions"
+
+        onClicked: {
+          androidInterface.callPermissionsActivity()
+        }
       }
+
+      Button {
+        text: "Run native service"
+
+        onClicked: {
+          androidInterface.callTrackingService()
+        }
+      }
+    }
+
+  }
+  Connections {
+    target: JniMessenger
+
+    function onMessageFromJava( message ) {
+      console.log( "QML printing the data:", message )
     }
   }
 }
